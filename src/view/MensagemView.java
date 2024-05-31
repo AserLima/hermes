@@ -1,13 +1,14 @@
 package view;
 
+import controller.RecebeMensagemController;
 import model.Mensagem;
 
 import java.util.List;
 
 public class MensagemView {
-    private MensagemController mensagemController;
+    private RecebeMensagemController mensagemController;
 
-    public mensagemView(MensagemController mensagemController){
+    public MensagemView(RecebeMensagemController mensagemController){
         this.mensagemController = mensagemController;
     }
 
