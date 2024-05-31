@@ -8,7 +8,7 @@ import java.util.List;
 public class ContatoView {
     private ContatoController contatoController;
 
-    public contatoView(ContatoController contatoController){
+    public ContatoView(ContatoController contatoController){
         this.contatoController = contatoController;
     }
 
