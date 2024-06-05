@@ -14,10 +14,10 @@ public class MensagemView {
 
     public void exibirMensagens(){
         List<Mensagem> mensagens;
-        mensagens = mensagemController.getTodasMensagens();
+        //   mensagens = mensagemController.getTodasMensagens();
         System.out.println("Mensagens:");
-        for (Mensagem mensagem : mensagens) {
-            System.out.println("mensagem:" + mensagem.getMensagem() + ",Enviado" + mensagem.getEnviado() + ", Data:" + mensagem.getCreated_at());
-        }
+        //   for (Mensagem mensagem : mensagens) {
+        //  System.out.println("mensagem:" + mensagem.getMensagem() + ",Enviado" + mensagem.getEnviado() + ", Data:" + mensagem.getCreated_at());
+        //   }
     }
 }

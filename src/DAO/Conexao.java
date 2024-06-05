@@ -11,11 +11,11 @@ public class Conexao {
     private final String usuario_mysql;
     private final String senha_mysql;
     private Connection conn;
-}
-    private Conexao(){
+
+    private Conexao() {
         usuario_mysql = "root";
         senha_mysql = "root";
-        con_banco = "jdbc:mysql://127.0.0.1:3307/bdseg?useSSL=false";
+        con_banco = "jdbc:mysql://127.0.0.1:3306/bdseg?useSSL=false";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(con_banco, usuario_mysql, senha_mysql);
@@ -25,12 +25,15 @@ public class Conexao {
             e.printStackTrace();
         }
     }
-    public static Conexao getInstance(){
-        if(conex == null){
+
+    public static Conexao getInstance() {
+        if (conex == null) {
             conex = new Conexao();
         }
         return conex;
     }
-    public Connection getConexao(){
+
+    public Connection getConexao() {
         return this.conn;
     }
+}

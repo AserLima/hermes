@@ -1,33 +1,39 @@
 package controller;
 
-import view.LoginView;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
+import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProviderClientBuilder;
+import com.amazonaws.services.cognitoidp.model.AuthenticationResultType;
+import com.amazonaws.services.cognitoidp.model.InitiateAuthRequest;
 
 public class LoginController {
-    private LoginView loginView;
-    private static final String URL_COGNITO = "https://sshermes.auth.us-east-2.amazoncognito.com/login?client_id=122olbh8d00adfegjn9qalk49l&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fexemple.com%2Fcallback";
+    private static final String CLIENT_ID = "r3oa0mk92ahiv8hd2kifr1vqr";
+    private static final String USER_POOL_ID = "us-east-1_e7lMuU87P";
+    private static final String REGION = "us-east-1";
+    private static final String ARN = "arn:aws:cognito-idp:us-east-1:339712927852:userpool/us-east-1_e7lMuU87P";
+    private static final String TOKEN_SIGNING_KEY_URL = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_e7lMuU87P/.well-known/jwks.json";
 
-    public LoginController(LoginView loginView){
-        this.loginView = loginView;
+    private AWSCognitoIdentityProvider cognitoClient;
+
+    public LoginController() {
+        cognitoClient = AWSCognitoIdentityProviderClientBuilder.standard()
+                .withRegion(Regions.US_EAST_1)
+                .build();
     }
 
-    public void iniciarLogin(){
-        redirecionarParaCognito();
-    }
-
-    private void redirecionarParaCognito(){
-        abrirUrlNavegador(URL_COGNITO);
-    }
-    private void abrirUrlNavegador(String url){
+    public AuthenticationResultType iniciarLogin(String email, String senha) {
         try {
-            Desktop.getDesktop().browse(new URI(url));
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+            InitiateAuthRequest authRequest = new InitiateAuthRequest()
+                    .withAuthFlow("USER_PASSWORD_AUTH")
+                    .withClientId(CLIENT_ID)
+                    .addAuthParametersEntry("USERNAME", email)
+                    .addAuthParametersEntry("PASSWORD", senha);
+
+            return cognitoClient.initiateAuth(authRequest).getAuthenticationResult();
+        } catch (Exception e) {
+            System.err.println("Erro ao autenticar usuário: " + e.getMessage());
+            return null;
         }
     }
-
 }

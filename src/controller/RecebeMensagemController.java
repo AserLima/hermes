@@ -7,12 +7,12 @@ import java.util.List;
 
 public class RecebeMensagemController {
     private MensagemDAO mensagemDAO;
-
+    private int id;
     public RecebeMensagemController(){
         this.mensagemDAO = new MensagemDAO();
     }
 
-    public List<Mensagem> receberMensagens(){
-        return mensagemDAO.getTodasMensagens();
+    public List<Mensagem> receberMensagens(int id){
+        return mensagemDAO.getTodasMensagens(id);
     }
 }

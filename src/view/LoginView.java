@@ -5,7 +5,7 @@ import java.net.URI;
 
 public class LoginView {
     public void iniciarLogin() {
-        String urlCognito = "https://sshermes.auth.us-east-2.amazoncognito.com/login?client_id=122olbh8d00adfegjn9qalk49l&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fexample.com%2Fcallback";
+        String urlCognito = "https://sshermes.auth.us-east-1.amazoncognito.com/signup?client_id=r3oa0mk92ahiv8hd2kifr1vqr&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Flocalhost";
         abrirUrlCognito(urlCognito);
     }
 

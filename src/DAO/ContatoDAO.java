@@ -23,7 +23,7 @@ public class ContatoDAO {
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()){
                 Contato contato = new Contato(rs.getString("nome"), rs.getString("telefone") );
-                contato.add(contato);
+                //contato.add(contato);
             }
 
         } catch (Exception e) {
